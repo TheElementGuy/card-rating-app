@@ -1,0 +1,64 @@
+﻿<Window x:Class="CardRatingApp.EnterDataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:CardRatingApp"
+        mc:Ignorable="d"
+        Title="EnterDataWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" FontSize="32">Data Entry</Label>
+        <Label Grid.Row="1">Choose a user:</Label>
+        <ComboBox Grid.Row="2" Margin="5" ItemsSource="{Binding Users}" Name="CurrentUser"></ComboBox>
+        <Grid Grid.Row="3">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Row="0" Grid.Column="0" Name="Card0"></Label>
+            <Label Grid.Row="1" Grid.Column="0" Name="Card1"></Label>
+            <Label Grid.Row="2" Grid.Column="0" Name="Card2"></Label>
+            <Label Grid.Row="3" Grid.Column="0" Name="Card3"></Label>
+            <Label Grid.Row="4" Grid.Column="0" Name="Card4"></Label>
+            <Label Grid.Row="5" Grid.Column="0" Name="Card5"></Label>
+            <Label Grid.Row="6" Grid.Column="0" Name="Card6"></Label>
+            <Label Grid.Row="7" Grid.Column="0" Name="Card7"></Label>
+            <Label Grid.Row="8" Grid.Column="0" Name="Card8"></Label>
+            <Label Grid.Row="9" Grid.Column="0" Name="Card9"></Label>
+            
+            <TextBox Grid.Row="0" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating0"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating1"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating2"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating3"></TextBox>
+            <TextBox Grid.Row="4" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating4"></TextBox>
+            <TextBox Grid.Row="5" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating5"></TextBox>
+            <TextBox Grid.Row="6" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating6"></TextBox>
+            <TextBox Grid.Row="7" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating7"></TextBox>
+            <TextBox Grid.Row="8" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating8"></TextBox>
+            <TextBox Grid.Row="9" Grid.Column="1" Width="30" HorizontalAlignment="Right" Name="Rating9"></TextBox>
+        </Grid>
+        <Button Grid.Row="4">I'm Done!</Button>
+    </Grid>
+</Window>

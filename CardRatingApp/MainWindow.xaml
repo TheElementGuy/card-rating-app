@@ -1,0 +1,47 @@
+﻿<Window x:Class="CardRatingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Card Rating App" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" FontSize="16">Card Rating App</Label>
+            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">Created by Jude Rasmussen</Label>
+
+        </Grid>
+
+        <Label Grid.Row="1" Grid.Column="0">Welcome back! Please choose an action:</Label>
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Height="30" Click="EnterData_Click">Enter Data</Button>
+            <Button Grid.Column="1" Height="30">New User</Button>
+            <Button Grid.Column="2" Height="30">Delete User</Button>
+            <Button Grid.Column="3" Height="30">See Rankings</Button>
+        </Grid>
+
+    </Grid>
+</Window>
