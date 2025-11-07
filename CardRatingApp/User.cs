@@ -3,46 +3,59 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using MathNet.Numerics;
 using MathNet.Numerics.Statistics;
 
 namespace CardRatingApp;
 
 public class User {
+	public ThreeElementList<int> Ratings0 {get; set;}
+	public ThreeElementList<int> Ratings1 {get; set;}
+	public ThreeElementList<int> Ratings2 {get; set;}
+	public ThreeElementList<int> Ratings3 {get; set;}
+	public ThreeElementList<int> Ratings4 {get; set;}
+	public ThreeElementList<int> Ratings5 {get; set;}
+	public ThreeElementList<int> Ratings6 {get; set;}
+	public ThreeElementList<int> Ratings7 {get; set;}
+	public ThreeElementList<int> Ratings8 {get; set;}
+	public ThreeElementList<int> Ratings9 {get; set;}
 
-	private List<int> Ratings0;
-	private List<int> Ratings1;
-	private List<int> Ratings2;
-	private List<int> Ratings3;
-	private List<int> Ratings4;
-	private List<int> Ratings5;
-	private List<int> Ratings6;
-	private List<int> Ratings7;
-	private List<int> Ratings8;
-	private List<int> Ratings9;
+	public double Mean {get; set;}
+	public double StandardDeviation {get; set;}
 
-	private double Mean;
-	private double StandardDeviation;
-
-	private string Username;
+	public string Username {get; set;}
 
 	public User(string name) {
-		
 		Username = name;
 		Mean = 5;
 		StandardDeviation = 1;
 
-		Ratings0 = new List<int>();
-		Ratings1 = new List<int>();
-		Ratings2 = new List<int>();
-		Ratings3 = new List<int>();
-		Ratings4 = new List<int>();
-		Ratings5 = new List<int>();
-		Ratings6 = new List<int>();
-		Ratings7 = new List<int>();
-		Ratings8 = new List<int>();
-		Ratings9 = new List<int>();
-		
+		Ratings0 = new ThreeElementList<int>();
+		Ratings1 = new ThreeElementList<int>();
+		Ratings2 = new ThreeElementList<int>();
+		Ratings3 = new ThreeElementList<int>();
+		Ratings4 = new ThreeElementList<int>();
+		Ratings5 = new ThreeElementList<int>();
+		Ratings6 = new ThreeElementList<int>();
+		Ratings7 = new ThreeElementList<int>();
+		Ratings8 = new ThreeElementList<int>();
+		Ratings9 = new ThreeElementList<int>();
+	}
+
+	public User() {
+		Username = "jrand";
+		Mean = 5;
+		StandardDeviation = 1;
+
+		Ratings0 = new ThreeElementList<int>();
+		Ratings1 = new ThreeElementList<int>();
+		Ratings2 = new ThreeElementList<int>();
+		Ratings3 = new ThreeElementList<int>();
+		Ratings4 = new ThreeElementList<int>();
+		Ratings5 = new ThreeElementList<int>();
+		Ratings6 = new ThreeElementList<int>();
+		Ratings7 = new ThreeElementList<int>();
+		Ratings8 = new ThreeElementList<int>();
+		Ratings9 = new ThreeElementList<int>();
 	}
 
 	public double GetMean() {
@@ -54,7 +67,10 @@ public class User {
 	}
 
 	public List<List<int>> GetRatings() {
-		return new List<List<int>>{Ratings0, Ratings1, Ratings2, Ratings3, Ratings4, Ratings5, Ratings6, Ratings7, Ratings8, Ratings9};
+		return new List<List<int>> {
+			Ratings0.AsList(), Ratings1.AsList(), Ratings2.AsList(), Ratings3.AsList(), Ratings4.AsList(),
+			Ratings5.AsList(), Ratings6.AsList(), Ratings7.AsList(), Ratings8.AsList(), Ratings9.AsList()
+		};
 	}
 
 	public List<int> GetRatingsAt(int index) {
@@ -72,17 +88,18 @@ public class User {
 	}
 
 	public void WriteToFile(StreamWriter output) {
-		String toWrite = JsonSerializer.Serialize(this);
-		output.Write(toWrite, new JsonSerializerOptions{WriteIndented = true});
+		String toWrite = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+		output.Write(toWrite);
 	}
 
 	public void FillFromFile(StreamReader input) {
 		String fromFile = input.ReadToEnd();
-		if (JsonSerializer.Deserialize<User>(fromFile) == null) {
-			System.Console.WriteLine("Could not find file.");
-			return;
+		User? toCopy = JsonSerializer.Deserialize<User>(fromFile);
+		if (toCopy is not null) {
+			this.Copy(toCopy);
+		} else {
+			throw new FileNotFoundException("Could not find file: " + (input.BaseStream as FileStream)?.Name);
 		}
-		this.Copy(JsonSerializer.Deserialize<User>(fromFile));
 	}
 
 	public void Copy(User toCopy) {
@@ -99,6 +116,71 @@ public class User {
 		this.Ratings7 = toCopy.Ratings7;
 		this.Ratings8 = toCopy.Ratings8;
 		this.Ratings9 = toCopy.Ratings9;
+	}
+
+	public void AddRating(int rating, int index) {
+		switch (index) {
+			case 0: {
+				Ratings0.Add(rating);
+				break;
+			}
+			case 1: {
+				Ratings1.Add(rating);
+				break;
+			}
+			case 2: {
+				Ratings2.Add(rating);
+				break;
+			}
+			case 3: {
+				Ratings3.Add(rating);
+				break;
+			}
+			case 4: {
+				Ratings4.Add(rating);
+				break;
+			}
+			case 5: {
+				Ratings5.Add(rating);
+				break;
+			}
+			case 6: {
+				Ratings6.Add(rating);
+				break;
+			}
+			case 7: {
+				Ratings7.Add(rating);
+				break;
+			}
+			case 8: {
+				Ratings8.Add(rating);
+				break;
+			}
+			case 9: {
+				Ratings9.Add(rating);
+				break;
+			}
+			default: {
+				throw new IndexOutOfRangeException("Index is not OK for adding rating.");
+			}
+		}
+
+		CalculateMean();
+		CalculateStandardDeviation();
+	}
+
+	public List<double> GetNormalizedAveragedRatings() {
+		CalculateMean();
+		CalculateStandardDeviation();
+		List<List<double>> toReturn = GetRatings().ConvertAll(Util.IntListToDoubleList);
+		toReturn.ForEach((list => {list.ForEach(rating => {rating = (rating - Mean) / StandardDeviation;});}));
+		return toReturn.ConvertAll(Util.AverageDoubleList);
+	}
+
+	public List<double> GetRecontextualizedNormalizedAveragedRatings() {
+		List<double> toReturn = GetNormalizedAveragedRatings();
+		toReturn.ForEach(d => {d = Util.Recontextualize(d);});
+		return toReturn;
 	}
 	
 }

@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace CardRatingApp;
@@ -23,4 +26,21 @@ public class Util {
 
 		return toReturn;
 	}
+
+	public static bool DoesFileExist(string fileName) {
+		return File.Exists(fileName);
+	}
+
+	public static List<double> IntListToDoubleList(List<int> input) {
+		return input.ConvertAll(Convert.ToDouble);
+	}
+
+	public static double AverageDoubleList(List<double> input) {
+		return input.Average();
+	}
+
+	public static double Recontextualize(double initialRating) {
+		return Math.Round(100 / (1 + Math.Pow(Math.E, -0.7 * initialRating)), 2);
+	}
+	
 }
