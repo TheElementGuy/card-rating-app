@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="CardRatingApp.RankingsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CardRatingApp"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" FontSize="32">Rankings</Label>
+            <Button Grid.Column="1" FontSize="12" Height="20" VerticalAlignment="Top" Click="BackButton_Click">Back</Button>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Row="0" Grid.Column="0" Name="Card1">Card1</Label>
+            <Label Grid.Row="1" Grid.Column="0" Name="Card2">Card2</Label>
+            <Label Grid.Row="2" Grid.Column="0" Name="Card3">Card3</Label>
+            <Label Grid.Row="3" Grid.Column="0" Name="Card4">Card4</Label>
+            <Label Grid.Row="4" Grid.Column="0" Name="Card5">Card5</Label>
+            <Label Grid.Row="5" Grid.Column="0" Name="Card6">Card6</Label>
+            <Label Grid.Row="6" Grid.Column="0" Name="Card7">Card7</Label>
+            <Label Grid.Row="7" Grid.Column="0" Name="Card8">Card8</Label>
+            <Label Grid.Row="8" Grid.Column="0" Name="Card9">Card9</Label>
+            <Label Grid.Row="9" Grid.Column="0" Name="Card10">Card10</Label>
+            
+            <Label Grid.Row="0" Grid.Column="1" Name="Rating1">Rating1</Label>
+            <Label Grid.Row="1" Grid.Column="1" Name="Rating2">Rating2</Label>
+            <Label Grid.Row="2" Grid.Column="1" Name="Rating3">Rating3</Label>
+            <Label Grid.Row="3" Grid.Column="1" Name="Rating4">Rating4</Label>
+            <Label Grid.Row="4" Grid.Column="1" Name="Rating5">Rating5</Label>
+            <Label Grid.Row="5" Grid.Column="1" Name="Rating6">Rating6</Label>
+            <Label Grid.Row="6" Grid.Column="1" Name="Rating7">Rating7</Label>
+            <Label Grid.Row="7" Grid.Column="1" Name="Rating8">Rating8</Label>
+            <Label Grid.Row="8" Grid.Column="1" Name="Rating9">Rating9</Label>
+            <Label Grid.Row="9" Grid.Column="1" Name="Rating10">Rating10</Label>
+            
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Row="0" Grid.Column="0">Copy to clipboard</Button>
+            <Button Grid.Row="0" Grid.Column="1">Hall of fame</Button>
+        </Grid>
+        
+    </Grid>
+</UserControl>

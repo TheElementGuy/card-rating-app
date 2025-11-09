@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace CardRatingApp;
 
@@ -6,15 +7,13 @@ namespace CardRatingApp;
 ///     Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class MainWindow : Window {
+
 	public MainWindow() {
 		InitializeComponent();
+		UcHost.Content = new MainUserControl();
 	}
 
-	private void EnterData_Click(object sender, RoutedEventArgs e) {
-		EnterDataWindow nextWindow = new EnterDataWindow();
-		
-		nextWindow.Show();
-		
-		this.Close();
+	public void NavigateTo(UserControl nextPage) {
+		UcHost.Content = nextPage;
 	}
 }

@@ -174,11 +174,17 @@ public class User {
 		CalculateStandardDeviation();
 		List<List<double>> toReturn = GetRatings().ConvertAll(Util.IntListToDoubleList);
 		toReturn.ForEach((list => {list.ForEach(rating => {rating = (rating - Mean) / StandardDeviation;});}));
+		for (int i = 0; i < toReturn.Count; i++) {
+			for (int j = 0; j < toReturn[i].Count; j++) {
+				toReturn[i][j] = (toReturn[i][j] - Mean) / StandardDeviation;
+			}
+		}
 		return toReturn.ConvertAll(Util.AverageDoubleList);
 	}
 
 	public List<double> GetRecontextualizedNormalizedAveragedRatings() {
 		List<double> toReturn = GetNormalizedAveragedRatings();
+		//TODO: fix this line (won't work)
 		toReturn.ForEach(d => {d = Util.Recontextualize(d);});
 		return toReturn;
 	}

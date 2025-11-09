@@ -8,13 +8,12 @@ using System.Windows.Media;
 
 namespace CardRatingApp;
 
-public partial class EnterDataWindow : Window {
-	
+public partial class EnterDataUserControl : UserControl {
 	public ObservableCollection<string> Users {get; set;}
 
 	private ObservableCollection<string> Cards {get; set;}
 	
-	public EnterDataWindow() {
+	public EnterDataUserControl() {
 		InitializeComponent();
 
 		Users = new ObservableCollection<string>();
@@ -37,16 +36,16 @@ public partial class EnterDataWindow : Window {
 			}
 		}
 
-		Card0.Content = Cards[0];
-		Card1.Content = Cards[1];
-		Card2.Content = Cards[2];
-		Card3.Content = Cards[3];
-		Card4.Content = Cards[4];
-		Card5.Content = Cards[5];
-		Card6.Content = Cards[6];
-		Card7.Content = Cards[7];
-		Card8.Content = Cards[8];
-		Card9.Content = Cards[9];
+		Card0.Content = CardTranslations.GetTranslation(Cards[0]);
+		Card1.Content = CardTranslations.GetTranslation(Cards[1]);
+		Card2.Content = CardTranslations.GetTranslation(Cards[2]);
+		Card3.Content = CardTranslations.GetTranslation(Cards[3]);
+		Card4.Content = CardTranslations.GetTranslation(Cards[4]);
+		Card5.Content = CardTranslations.GetTranslation(Cards[5]);
+		Card6.Content = CardTranslations.GetTranslation(Cards[6]);
+		Card7.Content = CardTranslations.GetTranslation(Cards[7]);
+		Card8.Content = CardTranslations.GetTranslation(Cards[8]);
+		Card9.Content = CardTranslations.GetTranslation(Cards[9]);
 		
 	}
 
@@ -90,8 +89,6 @@ public partial class EnterDataWindow : Window {
 	}
 
 	private void BackButton_Click(object sender, RoutedEventArgs e) {
-		MainWindow home = new MainWindow();
-		home.Show();
-		this.Close();
+		((MainWindow) Application.Current.MainWindow).NavigateTo(new MainUserControl());
 	}
 }
